@@ -70,15 +70,16 @@ class TodoDetailState extends State<TodoDetail> {
           ),
           ),
           // Dropdown button for priority
-          DropdownButton<String>(
+          ListTile( title: DropdownButton<String>(
             items: _priorities.map((String value) {
               return DropdownMenuItem(
                 value: value,
                 child: Text(value),);
             }).toList(),
             style: textStyle,
-            value: _priority, 
+            value: "Low", 
             onChanged: null)
+          )
         ]
       ),
           ]
