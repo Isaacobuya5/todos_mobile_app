@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../model/todo.dart';
 import '../util/dbhelper.dart';
+import './tododetail.dart';
 
 class TodoList extends StatefulWidget {
   @override
@@ -27,7 +28,9 @@ class _TodoListState extends State<TodoList> {
       body: todoListItems(),
       floatingActionButton: FloatingActionButton(
         tooltip: "Add a New Todo",
-        onPressed: null),
+        onPressed: (){
+        navigateToDetail(Todo('', 3, ''));
+        }),
     );
   }
 
@@ -77,6 +80,7 @@ class _TodoListState extends State<TodoList> {
             subtitle: Text(this.todos[position].date),
             onTap: () {
               print("Tapped " + this.todos[position].id.toString());
+              navigateToDetail(this.todos[position]);
             },
           )
         );
@@ -98,5 +102,14 @@ class _TodoListState extends State<TodoList> {
       default:
          return Colors.green;
     }
+  }
+
+  // the user can navigator to the todo detail page when he performs two actions
+  // a. presses on an individual todo item from the todo list
+  // b. click on the floating action button to add a new todo
+  void navigateToDetail(Todo todo) async{
+     bool result = await Navigator.push(context, MaterialPageRoute(
+       builder: (context) => TodoDetail(todo)));
+
   }
 }

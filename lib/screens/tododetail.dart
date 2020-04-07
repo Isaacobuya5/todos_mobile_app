@@ -37,7 +37,11 @@ class TodoDetailState extends State<TodoDetail> {
         automaticallyImplyLeading: false,
         title: Text(todo.title),
       ),
-      body: Column(
+      body: Padding(
+        padding: EdgeInsets.only(top: 35.0, left: 10.0, right: 10.0),
+        child: ListView(
+          children: <Widget> [
+        Column(
         children: <Widget> [
           // Text field for title
           TextField(
@@ -52,7 +56,9 @@ class TodoDetailState extends State<TodoDetail> {
           ),
 
           //  Text field for description
-          TextField(
+          Padding(
+          padding: EdgeInsets.only(top: 15.0,bottom: 15.0),
+          child: TextField(
             controller: descriptionController,
             style: textStyle,
             decoration: InputDecoration(
@@ -62,7 +68,7 @@ class TodoDetailState extends State<TodoDetail> {
                 borderRadius: BorderRadius.circular(5.0), )
             ),
           ),
-
+          ),
           // Dropdown button for priority
           DropdownButton<String>(
             items: _priorities.map((String value) {
@@ -75,6 +81,8 @@ class TodoDetailState extends State<TodoDetail> {
             onChanged: null)
         ]
       ),
-    );
+          ]
+        )
+    ));
   }
 }
