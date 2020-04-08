@@ -28,9 +28,11 @@ class _TodoListState extends State<TodoList> {
       body: todoListItems(),
       floatingActionButton: FloatingActionButton(
         tooltip: "Add a New Todo",
+        child: Icon(Icons.add),
         onPressed: (){
         navigateToDetail(Todo('', 3, ''));
         }),
+        
     );
   }
 
@@ -111,5 +113,8 @@ class _TodoListState extends State<TodoList> {
      bool result = await Navigator.push(context, MaterialPageRoute(
        builder: (context) => TodoDetail(todo)));
 
+      if (result == true) {
+        getData();
+      }
   }
 }
